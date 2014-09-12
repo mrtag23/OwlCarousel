@@ -855,9 +855,11 @@ if (typeof Object.create !== "function") {
         disabledEvents :  function () {
             var base = this;
             base.$elem.on("dragstart.owl", function (event) { event.preventDefault(); });
-            base.$elem.on("mousedown.disableTextSelect", function (e) {
+            if(base.options.mouseDrag === true){
+              base.$elem.on("mousedown.disableTextSelect", function (e) {
                 return $(e.target).is('input, textarea, select, option');
-            });
+              });
+            }
         },
 
         gestures : function () {
